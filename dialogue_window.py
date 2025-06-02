@@ -21,22 +21,19 @@ class MainWindow(QMainWindow):
 
         self.input = QLineEdit()
         self.input.setFont(font)
-        self.input.setPlaceholderText("Введите ваш запрос...")
+        self.input.setPlaceholderText("Enter your request...")
         # При нажатии на Enter посылается текст (VAC!)
         self.input.returnPressed.connect(self.send_text)
 
         button_send = QPushButton("Send text")
-        # button_send.setCheckable(True)
         button_send.clicked.connect(self.send_text)
 
         button_clear = QPushButton("Clear history")
-        # button_clear.setCheckable(True)
         button_clear.clicked.connect(self.clear_history)
 
         layout = QVBoxLayout()
         layout.addWidget(button_clear)
 
-        # layout.addWidget(self.label)
         layout.addWidget(self.history_view)
         layout.addWidget(self.input)
         layout.addWidget(button_send)
@@ -58,7 +55,6 @@ class MainWindow(QMainWindow):
 
     def clear_history(self):
         self.history.clear()
-        print("history is cleared!")
         self.history_view.clear()
 
     def send_text(self):
@@ -71,7 +67,6 @@ class MainWindow(QMainWindow):
             response = self.chat()
             self.history.append({'role': 'assistant', 'content': response})
             self.history_view.setText(self.get_history_view())
-            print(response)
         except Exception as e:
             self.history.append(
                 {'role': 'assistant', 'content': f"Ошибка: {str(e)} ! Убедитесь, что сервер ollama запущен."})
