@@ -22,7 +22,8 @@ class MainWindow(QMainWindow):
         self.input = QLineEdit()
         self.input.setFont(font)
         self.input.setPlaceholderText("Введите ваш запрос...")
-        self.input.returnPressed.connect(self.send_text)  # При нажатии на Enter посылается текст (VAC!)
+        # При нажатии на Enter посылается текст (VAC!)
+        self.input.returnPressed.connect(self.send_text)
 
         button_send = QPushButton("Send text")
         # button_send.setCheckable(True)
@@ -40,12 +41,10 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.input)
         layout.addWidget(button_send)
 
-
         self.setMinimumSize(QSize(500, 400))
 
         container = QWidget()
         container.setLayout(layout)
-
 
         # Устанавливаем центральный виджет Window.
         self.setCentralWidget(container)
@@ -89,7 +88,8 @@ class MainWindow(QMainWindow):
 
 # Приложению нужен один (и только один) экземпляр QApplication.
 # Передаём sys.argv, чтобы разрешить аргументы командной строки для приложения.
-# Если не будете использовать аргументы командной строки, QApplication([]) тоже работает
+# Если не будете использовать аргументы командной строки, QApplication([])
+# тоже работает
 app = QApplication(sys.argv)
 
 # Создаём виджет Qt — окно.
